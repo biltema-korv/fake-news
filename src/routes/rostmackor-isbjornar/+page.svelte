@@ -13,7 +13,7 @@
 	let { children } = $props();
 </script>
 
-<main>
+<main> 
     <article>
 	    <h1>{news.newstitle[0]}</h1>
         <div class="newsarticles">
