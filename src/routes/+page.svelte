@@ -1,7 +1,9 @@
 <script>
-  let polarbear="/assets/polarbear.png"
-  let place="/assets/plats.png"
-  let rent="/assets/styrranta.png"
+  import favicon from '$lib/assets/favicon.svg';
+	import { base } from '$app/paths';
+  let polarbear="assets/polarbear.png"
+  let place="assets/plats.png"
+  let rent="assets/styrranta.png"
   let selectedcategory=$state("Alla")
   let news=$state({
     newstitle: ["Rostmackor dödar isbjörnarna.","Flintskallig lärare jagade elev efter misslyckat mattepass","Styrräntan höjs till 20 procentenheter","Kalle Anka partiet får högt stöd i opinionen, lovar 'längre sovmorgon'"], 
@@ -14,8 +16,6 @@
     skribent: ['Jarl "Brödrost Förgörare" Bengtsson','Okänd Sponsrad Lärare','Rally Arne','Entusiastisk Kalle Anka Partist'],
     categories: ['Klimat','Oroande','Ekonomi','Politik']
   })
-  import favicon from '$lib/assets/favicon.svg';
-	import { base } from '$app/paths';
   function pickcategory(category) {
     selectedcategory=category;
   }
