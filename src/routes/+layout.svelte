@@ -8,7 +8,7 @@
 <svelte:head>
 	<link rel="icon" href={favicon} />
 	<a href="{base}/">Home</a>
-	<a href="{base}/">About</a>
+	<a href="{base}/aboutus">About Us</a>
 </svelte:head>
 
 {@render children()}

@@ -1,0 +1,13 @@
+---
+title: "Andra Devblog, jobbar på mattespel och mer interaktivitet"
+date: "2026-04-24 / 2026-04-27"
+effort: "medium/high"
+---
+
+# andra devblog
+
+Gjorde sidan mer interaktiv. Dvs: hovra över titeln på en artikel så blir texten mörkare och större. Hovra över kategori så blir den större och mörkare. Det gjorde jag så att det blir enklare att veta vad som går att klicka på, och jag har som mål att allt interaktivt ska vara tydligt om man hovrar.
+
+Jag satte till "Spela våra spel" på högra sidan av framsidan. Klickar man in går det att spela ett mattespel. det finns fyra svårighetsgrader, som blir gradvis svårare och svårare. Det håller även en streak, men det sparas inte. Antingen blir det addition, subtraktion eller multiplikation. Ingen division därför att det blir små tal väldigt enkelt. kanske försöker hitta något annat sätt att få med division.
+
+Jag har lärt mig att det går att ha if satser och vad det gör på samma rad, vilket gör koden se finare ut
