@@ -54,7 +54,7 @@
   {#each news.newstitle as title, i}
     {#if selectedcategory === "Alla" || news.categories[i] === selectedcategory}
     <article class="article">
-	    <a href="{'deepdive'}/?index={i}">{news.newstitle[i]}</a>
+	    <a href="deepdive/?index={i}">{news.newstitle[i]}</a>
         <div class="newsarticles">
           <div class="textagain">
           <h3 class="desc">{news.newsdescription[i]}</h3>
