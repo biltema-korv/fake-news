@@ -1,12 +1,16 @@
 <script>
-    import { page } from '$app/stores';
+    import { onMount } from 'svelte';
     let polarbear="assets/polarbear.png"
     let place="assets/plats.png"
     let rent="assets/styrranta.png"
     let ostboll="assets/ostboll.png"
     
     // Get the article index from the URL query parameter
-    let articleIndex = $state(parseInt($page.url.searchParams.get('index') || '0'));
+    let articleIndex = $state(0);
+    onMount(() => {
+        const current = parseInt(new URLSearchParams(window.location.search).get('index') || '0', 10);
+        articleIndex = Number.isNaN(current) ? 0 : current;
+    });
     let news=$state({
         newstitle: ["Rostmackor dödar isbjörnarna.","Flintskallig lärare jagade elev efter misslyckat mattepass","Styrräntan höjs till 20 procent, stora förändringar på väg","Kalle Anka partiet får högt stöd i opinionen, lovar 'längre sovmorgon'","Elev risigt ute efter att spelat onlinespel med digital valuta","Påse av ostkrokar innehöll en ostboll"], 
         newsdescription: ['En ny studie publicerad av Hullaballu Universitetet visar att för varje rostmacka som rostas dör 3 isbjörnsfamiljer. Det kan få stora följder för framtiden av isbjörnarna, säger experter. En person säger: "Jag bryr mig då fan inte, det är ju jävligt gott."'
