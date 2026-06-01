@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte';
+    const d = new Date();
     const polarbear="assets/polarbear.png"
     const place="assets/plats.png"
     const rent="assets/styrranta.png"
@@ -46,10 +47,11 @@
     <article>
 	    <h1>{news.newstitle[articleIndex]}</h1>
         <div class="newsarticles">
-            <h3 class="desc">{news.newsdescription[articleIndex]}</h3>
+            <h2 class="desc">{news.newsdescription[articleIndex]}</h2>
             <img alt="News Icon" src={news.newsimage[articleIndex]}>
-            <h3 class="desc">{news.newsdescription2[articleIndex]}</h3>
-            <h4 class="desc">Skriven av {news.skribent[articleIndex]}</h4> 
+            <h2 class="desc">{news.newsdescription2[articleIndex]}</h2>
+            <h3 class="desc">Skriven av {news.skribent[articleIndex]}</h3> 
+            <h3 class="calenderday">{d.getDate()}/{d.getMonth()+1}/{d.getFullYear()}</h3> 
         </div>
     </article>
 
