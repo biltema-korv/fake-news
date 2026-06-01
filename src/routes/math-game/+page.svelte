@@ -114,6 +114,7 @@
         color:white;
         width: fit-content;
         font-size: 3vh;
+        padding: 0.5vh;
         justify-content: center;
         margin: auto;
     }

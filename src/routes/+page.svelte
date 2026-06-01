@@ -84,7 +84,7 @@
   </categories>
   <a class="yeah" href="games-list">Spela våra spel</a>
   
-  <h3>Nuvarande kategori: {selectedcategory}</h3>
+  <h3 class="categoryheader">Nuvarande kategori: {selectedcategory}</h3>
   
   {#each news.newstitle as title, i}
     {#if selectedcategory === "Alla" || news.categories[i] === selectedcategory}
@@ -218,7 +218,7 @@
     position: relative;
     justify-content: center;
     transition: transform 0.3s;
-    padding: 0.5vh;
+    padding: 1vh;
     align-self: center;
     width: fit-content;
   }
@@ -281,13 +281,17 @@
     opacity: 1;
   }
   .yeah{
-    position: static;
+    position: absolute;
     width: fit-content;
     text-align: right;
     display: block;
-    right: 11vw;
+    right: 0;
     margin-left: auto;
     margin-right: 10vh;
+  }
+  .categoryheader{
+    position: absolute;
+    top: auto;
   }
 
   .titlespin {

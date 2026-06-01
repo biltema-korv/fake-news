@@ -143,6 +143,7 @@
         transition: transform 0.3s;
         color:white;
         font-size: 3vh;
+        padding: 0.5vh;
         justify-content: center;
         margin: auto;
         text-align: center;
