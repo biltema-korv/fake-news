@@ -56,6 +56,7 @@
     </article>
 
   	<link rel="icon" href={favicon} />
+    <a href="{base}/">Tillbaka till huvudsidan</a>
 </main>
 
 <style>
@@ -76,5 +77,19 @@
         margin: auto;
         display: flex;
         border-radius: 8vh;
+    }
+        a{
+        justify-content: center;
+        display: flex;
+        font-size: 2vw;
+        transition: transform 0.3s;
+        color:white;
+        padding: 1vh;
+        width: fit-content;
+        text-align: center;
+        margin: auto;
+    }
+    a:hover{
+        transform: scale(1.08);
     }
 </style> 
