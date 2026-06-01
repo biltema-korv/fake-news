@@ -88,7 +88,7 @@
     <h2>{streak} correct in a row</h2>
     <h3>{Math.floor(math1)} {operations} {Math.floor(math2)}</h3>
     <h3>= {written}</h3>
-    <input type="number" bind:value={written}>
+    <input type="number" bind:value={written} onkeypress={(e) => e.key === 'Enter' && handleSubmit()}>
     <button onclick={() => handleSubmit()}>Skicka in svar</button>
     <h2>{resulttext}</h2>
 </main>
