@@ -142,6 +142,7 @@
     .yeah{
         transition: transform 0.3s;
         color:white;
+        font-size: 3vh;
         justify-content: center;
         margin: auto;
         text-align: center;
@@ -156,5 +157,9 @@
         margin: auto;
         flex-direction: column;
         width: fit-content;
+    }
+    .yeah:hover{
+        transform: scale(1.08);
+        color:gray;
     }
 </style>

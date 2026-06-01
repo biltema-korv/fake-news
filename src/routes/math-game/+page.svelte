@@ -113,11 +113,13 @@
         transition: transform 0.3s;
         color:white;
         width: fit-content;
+        font-size: 3vh;
         justify-content: center;
         margin: auto;
     }
     .yeah:hover{
         transform: scale(1.08);
+        color:gray;
     }
     button{
         width: fit-content;

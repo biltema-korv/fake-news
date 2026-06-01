@@ -23,6 +23,7 @@
     }
     a:hover{
         transform: scale(1.08);
+        color:gray;
     }
 
     :global(body) {
