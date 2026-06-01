@@ -1,11 +1,11 @@
 <script>
-
+    import { base } from '$app/paths';
 </script>
 
 <main>
-    <a href="math-game">Mattespel</a>
-    <a href="fortunecookie">Lyckokaka grejsemojs</a>
-    <a href="/">Vädret</a>
+    <a href="{base}/math-game">Mattespel</a>
+    <a href="{base}/fortunecookie">Lyckokaka grejsemojs</a>
+    <a href="{base}/">Vädret</a>
 </main>
 
 <style>

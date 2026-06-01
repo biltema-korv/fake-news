@@ -8,6 +8,7 @@
     let streak=$state(0)
     let difficultysetting=$state("Normal") 
     let range=$state(10)
+    import { base } from '$app/paths';
 
     math1=Math.random() * range  
     let random=$state(Math.floor(Math.random() * 3))
@@ -75,8 +76,8 @@
 </script>
 
 <main>
-    <a class="yeah" href="/">Gå till huvudsidan</a>
-    <a class="yeah" href="games-list">Gå till spellista</a>
+    <a class="yeah" href="{base}/">Gå till huvudsidan</a>
+    <a class="yeah" href="{base}/games-list">Gå till spellista</a>
     <h1>Math Game</h1>
 
     <button class="category" onclick={() => difficulty("Easy")}>Easy</button>

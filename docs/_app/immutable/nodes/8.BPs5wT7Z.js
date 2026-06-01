@@ -1,1 +1,0 @@
-import"../chunks/DsnmJJEf.js";import"../chunks/69_IOA4Y.js";import{a as o,f as t}from"../chunks/Cr33G-mR.js";var r=t('<main><a href="math-game" class="svelte-cpcjvj">Mattespel</a> <a href="fortunecookie" class="svelte-cpcjvj">Lyckokaka grejsemojs</a> <a href="/" class="svelte-cpcjvj">Vädret</a></main>');function p(a){var e=r();o(a,e)}export{p as component};

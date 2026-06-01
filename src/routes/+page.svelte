@@ -1,15 +1,35 @@
 <script>
   const d = new Date();
   import favicon from '$lib/assets/favicon.svg';
-	import { base } from '$app/paths';
-  import { page } from '$app/stores';
+  import { base } from '$app/paths';
+  import { onMount } from 'svelte';
+  
   let polarbear="assets/polarbear.png"
   let place="assets/plats.png"
   let rent="assets/styrranta.png"
   let ostboll="assets/ostboll.png"
+  let temp=$state(21)
+  let random=$state(Math.floor(Math.random() * 12))
+  let randomweather=$state(Math.floor(Math.random() * 4))
+  let icons=$state("")
+  onMount(() => {
+    if (randomweather<=1){
+      icons="☀︎"
+      temp=23-random/2
+    }
+    else if (randomweather==2){
+      icons="☔︎︎"
+      temp=13-random/2
+    }
+    else if (randomweather==3){
+      icons="🌩"
+      temp=17-random/2
+    }
+  });
+
   let selectedcategory=$state("Alla")
   let news=$state({
-    newstitle: ["Rostmackor dödar isbjörnarna.","Flintskallig lärare jagade elev efter misslyckat mattepass","Styrräntan höjs till 20 procent, stora förändringar på väg","Kalle Anka partiet får högt stöd i opinionen, lovar 'längre sovmorgon'","Elev risigt ute efter att spelat onlinespel med digital valuta","Påse av ostkrokar innehöll en ostboll"], 
+    newstitle: ["Rostmackor dödar isbjörnarna.","Flintskallig lärare jagade elev efter misslyckat mattepass","Styrräntan höjs till 20 procent, stora förändringar på väg","Kalle Anka partiet får högt stöd i opinionen, lovar 'längre sovmorgon'","Elev risigt ute efter att spelat onlinespel med digital valuta","Påse av ostkrokar innehöll en ostboll","Glassföretag byter bransch i Frankrike"], 
     newsdescription: [
       'En ny studie publicerad av Hullaballu Universitetet visar att för varje rostmacka som rostas dör 3 isbjörnsfamiljer. Det kan få stora följder för framtiden av isbjörnarna, säger experter. En person säger: "Jag bryr mig då fan inte, det är ju jävligt gott."'
       ,"Älskad lärare Flintis Flintimer har jagat ut en elev ut ur skolan efter att de misslyckades med 3+4. Enligt källor svarade eleven blankt, som den stora fegisen den är."
@@ -17,11 +37,11 @@
       ,"Bra nyheter kommer för Ankeborg, då det sägs att partiet 'Kalle Anka partiet' har fått 107.5% stöd, en ökning av 2.3 procentenheter från senaste mätningen. Mätningen utfördes av mig. 'Nu blir det garanterad vinst', säger jag. Rösta på oss för längre sovmorgon."
       ,"En elev har haft en dålig dag i skolan, då det upptäcktes att de spelade onlinespel för digital valuta. De har blivit skickad till psykisk sjukvård och ska observeras inom några dagar. Vi håller er uppdaterade."
       ,"Det ser knackigt ut för ostkrok entusiaster, därför att någon har rapporterat att det fanns en ostboll i deras påse med ostkrokar. Det här bryter mot många lagar, förmodligen."
+      ,"Efter den nyliga värmeböljan som slog till Frankrike och västra Europa, har alla glassföretag i Frankrike gått ihop och bestämt sig för att sälja vatten istället. 'Detta är för att glassarna smälter för snabbt och alla konsumenter skyller på företagen, inte vädret. Vi ser även en stor efterfrågan för vatten,' säger en representant för franska glassföretag."
     ], 
-    newsimage: [polarbear,place,rent,place,place,ostboll],
-    sendto: ['deepdive'],
-    skribent: ['Jarl "Brödrost Förgörare" Bengtsson','Okänd Sponsrad Lärare','Rally Arne','Entusiastisk Kalle Anka Partist',"Big M","Ring Rost Ragnar"],
-    categories: ['Klimat','Oroande','Ekonomi','Politik','Oroande','Ekonomi'],
+    newsimage: [polarbear,place,rent,place,place,ostboll,place],
+    skribent: ['Jarl "Brödrost Förgörare" Bengtsson','Anonym Lärare','Rally Arne','Entusiastisk Kalle Anka Partist',"Big M","Ring Rost Ragnar","Louis Simpleton"],
+    categories: ['Klimat','Oroande','Ekonomi','Politik','Oroande','Oroande','Ekonomi'],
     calenderday: [-1,10,'Ekonomi','Politik'],
   })
   function pickcategory(category) {
@@ -39,6 +59,10 @@
     <h3>Unbiased, factual, daily.</h3>
     <div class="separator"> </div>
   </div>
+      <div class="temperature">
+        <span class="icon">Väder om ett år: {icons}</span>
+        <div class="temp-bar" aria-hidden="true">{temp}°C</div>
+      </div>
 
   <categories>
     <button class="category" onclick={() => pickcategory("Alla")}>Alla</button>
@@ -62,7 +86,6 @@
           <h4 class="calenderday">{d.getDate()}/{d.getMonth()+1}/{d.getFullYear()}</h4> 
         </div>
         <img alt="News Icon" src={news.newsimage[i]}>
-        <p class="rightsidestuff">yum yum</p>
         </div>
       <div class="separatornews"> </div>
     </article>
@@ -120,28 +143,21 @@
   }
 
   .article{
-    width: 60vw;
+    width: 75vw;
+    margin: auto;
   }
 
   .newsarticles{
     margin: auto;
-    width: 50vw;
-    height: 10vh;
+    width: 60vw;
+    height: 12vh;
     /*overflow: hidden;*/
     text-align: left;
-    justify-content: left;
+    justify-content: center;
     grid-template-columns: 1fr 1fr;
     display: flex;
   }
-
-  .rightsidestuff{
-    text-align: right;
-    margin-left: auto;
-    margin-right: 0;
-    position: absolute;
-    right: 2vw;
-  }
-
+  
   categories{
     margin: auto;
     width: 50vw;
@@ -218,13 +234,39 @@
     transform: scale(1.05);
     color:gray;
   }
+  /* minimal: show temp bar to the right on hover */
+  .temperature{ position: relative; display: inline-block; }
+  .temperature .temp-bar{
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform-origin: left center;
+    transition: transform 160ms ease, opacity 160ms ease;
+    opacity: 0;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    padding: 0.4vh 0.6vh;
+    border-radius: 0.4vh;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .temperature:hover .temp-bar,
+  .temperature:focus-within .temp-bar{
+    transform: translateX(6px) translateY(-50%) scaleX(1);
+    opacity: 1;
+  }
+  .temperature{
+    width: 25vh;
+    height: 4vh;
+    font-size: 3vh;
+  }
   .yeah{
-    position: fixed;
+    position: static;
     width: fit-content;
     text-align: right;
     display: block;
     right: 11vw;
-    margin-left: 10vh;
-    margin-right: auto;
+    margin-left: auto;
+    margin-right: 10vh;
   }
 </style>

@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
     let randomize=$state(0)
     let text=$state("")
     let gork=$state(false)
@@ -45,8 +46,8 @@
 </script>
 
 <main>
-    <a class="yeah" href="/">Gå till huvudsidan</a>
-    <a class="yeah" href="games-list">Gå till spellista</a>
+    <a class="yeah" href="{base}/">Gå till huvudsidan</a>
+    <a class="yeah" href="{base}/games-list">Gå till spellista</a>
     <h1>Fortune Cookie Game</h1>
     <button onclick={() => handleSubmit()}>Öppna lyckokakan</button>
     <same>
