@@ -2,16 +2,19 @@
   const d = new Date();
   import favicon from '$lib/assets/favicon.svg';
   import { base } from '$app/paths';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   
-  let polarbear="assets/polarbear.png"
-  let place="assets/plats.png"
-  let rent="assets/styrranta.png"
-  let ostboll="assets/ostboll.png"
+  const polarbear="assets/polarbear.png"
+  const place="assets/plats.png"
+  const rent="assets/styrranta.png"
+  const ostboll="assets/ostboll.png"
+  const icecram="assets/icecram.png"
+  const copyright="assets/copyright.png"
   let temp=$state(21)
   let random=$state(Math.floor(Math.random() * 12))
   let randomweather=$state(Math.floor(Math.random() * 4))
   let icons=$state("")
+  let titleSpin = $state(false)
   onMount(() => {
     if (randomweather<=1){
       icons="☀︎"
@@ -31,16 +34,16 @@
   let news=$state({
     newstitle: ["Rostmackor dödar isbjörnarna.","Flintskallig lärare jagade elev efter misslyckat mattepass","Styrräntan höjs till 20 procent, stora förändringar på väg","Kalle Anka partiet får högt stöd i opinionen, lovar 'längre sovmorgon'","Elev risigt ute efter att spelat onlinespel med digital valuta","Påse av ostkrokar innehöll en ostboll","Glassföretag byter bransch i Frankrike"], 
     newsdescription: [
-      'En ny studie publicerad av Hullaballu Universitetet visar att för varje rostmacka som rostas dör 3 isbjörnsfamiljer. Det kan få stora följder för framtiden av isbjörnarna, säger experter. En person säger: "Jag bryr mig då fan inte, det är ju jävligt gott."'
+      'En ny studie publicerad av Hullaballu Universitetet visar att för varje rostmacka som rostas dör 3 isbjörnsfamiljer. Det kan få stora följder för framtiden av isbjörnarna, säger experter. En person säger: "Jag bryr mig inte, det är ju sjukt gott."'
       ,"Älskad lärare Flintis Flintimer har jagat ut en elev ut ur skolan efter att de misslyckades med 3+4. Enligt källor svarade eleven blankt, som den stora fegisen den är."
       ,"Riksbankschefen Erik Thedéen säger att svenskar 'är horribla' på att hantera ekonomin, och att vi borde vara mer sparsamma. Därför höjs styrräntan från 1,75 procent upp till 20, en ökning på 18,25 procentenheter. Han påstår att det är för att få 'tillbaka kontroll' av den svenska ekonomin."
-      ,"Bra nyheter kommer för Ankeborg, då det sägs att partiet 'Kalle Anka partiet' har fått 107.5% stöd, en ökning av 2.3 procentenheter från senaste mätningen. Mätningen utfördes av mig. 'Nu blir det garanterad vinst', säger jag. Rösta på oss för längre sovmorgon."
+      ,"Bra nyheter kommer för Kalle Anka-partister, då det sägs att partiet 'Kalle Anka partiet' har fått 107.5% stöd, en ökning av 2.3 procentenheter från senaste mätningen. Mätningen utfördes av en Kalle Anka-partist. 'Nu blir det garanterad vinst', säger en Kalle Anka partist. 'Rösta på oss för längre sovmorgon.'"
       ,"En elev har haft en dålig dag i skolan, då det upptäcktes att de spelade onlinespel för digital valuta. De har blivit skickad till psykisk sjukvård och ska observeras inom några dagar. Vi håller er uppdaterade."
       ,"Det ser knackigt ut för ostkrok entusiaster, därför att någon har rapporterat att det fanns en ostboll i deras påse med ostkrokar. Det här bryter mot många lagar, förmodligen."
-      ,"Efter den nyliga värmeböljan som slog till Frankrike och västra Europa, har alla glassföretag i Frankrike gått ihop och bestämt sig för att sälja vatten istället. 'Detta är för att glassarna smälter för snabbt och alla konsumenter skyller på företagen, inte vädret. Vi ser även en stor efterfrågan för vatten,' säger en representant för franska glassföretag."
+      ,"Efter den nyliga värmeböljan som slog till Frankrike och västra Europa, har alla glassföretag i Frankrike gått ihop och bestämt sig för att sälja vatten istället. 'Detta är för att glassarna smälter för snabbt och alla konsumenter skyller på företagen, inte vädret. Vi ser även en stor efterfrågan på vatten,' säger en representant för franska glassföretag."
     ], 
-    newsimage: [polarbear,place,rent,place,place,ostboll,place],
-    skribent: ['Jarl "Brödrost Förgörare" Bengtsson','Anonym Lärare','Rally Arne','Entusiastisk Kalle Anka Partist',"Big M","Ring Rost Ragnar","Louis Simpleton"],
+    newsimage: [polarbear,place,rent,copyright,place,ostboll,icecram],
+    skribent: ['Jarl "Brödrost Förgörare" Bengtsson','Anonym Lärare','Rally Arne','Munk Filip',"Big M","Ring Rost Ragnar","Louis Simpleton"],
     categories: ['Klimat','Oroande','Ekonomi','Politik','Oroande','Oroande','Ekonomi'],
     calenderday: [-1,10,'Ekonomi','Politik'],
   })
@@ -49,13 +52,21 @@
   }
 
 	let { children } = $props();
+
+  async function interact(where) {
+    if (where==="title"){
+      titleSpin = false;
+      await tick();
+      titleSpin = true;
+    }
+  }
 </script>
 
 
 
 <main>
   <div class="wanga">
-    <h1>Fallaciloqua</h1>
+    <button class:titlespin={titleSpin} onclick={() => interact("title")} onanimationend={() => titleSpin = false}>Fallaciloqua</button>
     <h3>Unbiased, factual, daily.</h3>
     <div class="separator"> </div>
   </div>
@@ -174,9 +185,17 @@
     background-color: #2d2d30;
   }
 
-  h1{
+  button{
+    color: white;
     font-size: 6vh;
     font-family:'Times New Roman', Times, serif;
+    background-color: transparent;
+    border: transparent;
+    width: fit-content;
+    font-weight: 600;
+  }
+  button:hover{
+    transform: scale(1.03);
   }
   h3{
     color: #B2B2B2;
@@ -234,31 +253,32 @@
     transform: scale(1.05);
     color:gray;
   }
-  /* minimal: show temp bar to the right on hover */
-  .temperature{ position: relative; display: inline-block; }
+  .temperature{
+    position: relative;
+    display: inline-block;
+    width: 25vh;
+    height: 4vh;
+    font-size: 3vh;
+  }
   .temperature .temp-bar{
     position: absolute;
     top: 50%;
     left: 100%;
+    transform: translateY(-50%);
     transform-origin: left center;
-    transition: transform 160ms ease, opacity 160ms ease;
+    transition: transform 0.16s ease, opacity 0.16s ease;
     opacity: 0;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,.08);
     color: white;
-    padding: 0.4vh 0.6vh;
-    border-radius: 0.4vh;
+    padding: .4vh .6vh;
+    border-radius: .4vh;
     pointer-events: none;
     z-index: 10;
   }
   .temperature:hover .temp-bar,
   .temperature:focus-within .temp-bar{
-    transform: translateX(6px) translateY(-50%) scaleX(1);
+    transform: translate(6px, -50%);
     opacity: 1;
-  }
-  .temperature{
-    width: 25vh;
-    height: 4vh;
-    font-size: 3vh;
   }
   .yeah{
     position: static;
@@ -268,5 +288,14 @@
     right: 11vw;
     margin-left: auto;
     margin-right: 10vh;
+  }
+
+  .titlespin {
+    animation: spin-title 0.6s ease;
+  }
+
+  @keyframes spin-title {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 </style>
